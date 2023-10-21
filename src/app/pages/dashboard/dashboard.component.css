@@ -1,0 +1,13 @@
+.dark-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: red; /* Fondo oscuro semitransparente */
+    z-index: 999; /* Valor alto para superponerlo sobre todo */
+  }
+
+  .custom-modal {
+    z-index: 0 !important; /* Establece el z-index a un valor personalizado */
+  }
