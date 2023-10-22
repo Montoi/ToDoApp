@@ -7,7 +7,7 @@ import { SidebarModule } from './sidebar/sidebar.module';
 import { FooterModule } from './shared/footer/footer.module';
 import { NavbarModule} from './shared/navbar/navbar.module';
 import { FixedPluginModule} from './shared/fixedplugin/fixedplugin.module';
-
+import { HttpClientModule, HttpClient } from '@angular/common/http'
 import { AppComponent } from './app.component';
 import { AppRoutes } from './app.routing';
 
@@ -18,7 +18,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 @NgModule({
   declarations: [
     AppComponent,
-    AdminLayoutComponent
+    AdminLayoutComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -29,7 +29,9 @@ import { ReactiveFormsModule } from "@angular/forms";
     NavbarModule,
     ToastrModule.forRoot(),
     FooterModule,
-    FixedPluginModule
+    FixedPluginModule,
+    HttpClientModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

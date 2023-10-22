@@ -1,8 +1,8 @@
 export interface note {
     id: number;
-    title: string;
     priority: string;
-    note: string;
+    noteText: string;
     date: Date;
-    color: string
+    colorId: number;
+    userId: number;
   }

@@ -1,6 +1,8 @@
 import { Routes } from '@angular/router';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { loginComponent } from './pages/Login/login.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 export const AppRoutes: Routes = [
   {

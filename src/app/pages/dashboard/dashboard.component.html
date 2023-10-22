@@ -1,12 +1,10 @@
 <div class="row">
-  <div *ngFor="let note of notesArray" class="col-lg-3 col-md-6 col-sm-6">
+  <div *ngFor="let note of notesArray; let i = index" class="col-lg-3 col-md-6 col-sm-6">
     <div class="card card-stats" [style.background-color]="note.color">
       <div class="card-body">
         <div class="row">
           <div class="col-5 col-md-4">
-            <div class="input-group-text">
-              <input type="checkbox" aria-label="Checkbox for following text input" style="width: 20px; height: 20px; background-color: black; border: none;">
-            </div>
+            
           </div>
           <div class="col-7 col-md-8">
             <div class="numbers">
@@ -20,7 +18,7 @@
           <div class="col-12 col-md-12">
             <div class="numbers">
               <p class="card-title text-left">
-                {{note.note}}
+                {{note.noteText}}
               </p>
               <p></p>
             </div>
@@ -38,69 +36,66 @@
     </div>
   </div> 
 
-  <ng-template #contentNote let-modal style="z-index: 0;">
-    <div class="modal-header">
-      <h4 class="modal-title">Notas</h4>
-      <button type="button" class="close" aria-label="Close" >
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <form [formGroup]="form">
-        <fieldset class="form-group row">
-          <legend class="col-form-label col-sm-2 float-sm-left pt-0">Prioridad</legend>
-          <div class="col-sm-10 ml-3">
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="priority" id="gridRadios1" value="Alta" formControlName="priority" checked>
-              <label class="form-check-label" for="gridRadios1">
-                Alta
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="priority" id="gridRadios2" value="Media" formControlName="priority">
-              <label class="form-check-label" for="gridRadios2">
-                Media
-              </label>
-            </div>
-            <div class="form-check disabled">
-              <input class="form-check-input" type="radio" name="priority" id="gridRadios3" value="Baja" formControlName="priority" >
-              <label class="form-check-label" for="gridRadios3">
-                Baja
-              </label>
-            </div>
-          </div>
-        </fieldset>
-        <div class="form-group">
-          <label for="exampleInputEmail1">Título</label>
-          <input type="text" class="form-control" id="title" aria-describedby="emailHelp" formControlName="title">
-        </div>
-        <div class="form-group">
-          <label for="exampleInputPassword1">Nota</label>
-          <input type="text" class="form-control" id="note" formControlName="note">
-        </div>
-      </form>
-      
-    </div>
-    <div class="modal-footer ">
-      <a [title]="typeAccion ? 'Guardar' : 'Agregar' " class="btn btn-primary" (click)="submitModal()"
-        >
-        <i [class]="typeAccion?'fa fa-save ':'fa fa-plus-circle'"> {{typeAccion ? " Guardar" :"
-          Agregar"}}</i>
-      </a>
   
-      <a data-toggle="tooltip" data-placement="bottom"
-        title="Eliminar" class="btn btn-danger btn-md ml-1" >
-        <i class="fa fa-trash-o "> Eliminar</i>
-      </a>
-  
-      <button type="button " class="btn btn-light " (click)="closeModal()">
-        <i class="fa fa-close "> Cerrar</i>
-      </button>
-    </div>
-  
-  </ng-template>
- 
 </div>
+<ng-template #contentNote let-modal style="z-index: 0;">
+  <div class="modal-header">
+    <h4 class="modal-title">Notas</h4>
+    <button type="button" class="close" aria-label="Close" >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="form">
+      <fieldset class="form-group row">
+        <legend class="col-form-label col-sm-2 float-sm-left pt-0">Prioridad</legend>
+        <div class="col-sm-10 ml-3">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="priority" id="gridRadios1" value="Alta" formControlName="priority" checked>
+            <label class="form-check-label" for="gridRadios1">
+              Alta
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="priority" id="gridRadios2" value="Media" formControlName="priority">
+            <label class="form-check-label" for="gridRadios2">
+              Media
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="priority" id="gridRadios3" value="Baja" formControlName="priority" >
+            <label class="form-check-label" for="gridRadios3">
+              Baja
+            </label>
+          </div>
+        </div>
+      </fieldset>
+     
+      <div class="form-group">
+        <label for="exampleInputPassword1">Nota</label>
+        <input type="text" class="form-control" id="note" formControlName="note">
+      </div>
+    </form>
+    
+  </div>
+  <div class="modal-footer ">
+    <a [title]="typeAccion ? 'Guardar' : 'Agregar' " class="btn btn-primary" (click)="submitModal()"
+      >
+      <i [class]="typeAccion?'fa fa-save ':'fa fa-plus-circle'"> {{typeAccion ? " Guardar" :"
+        Agregar"}}</i>
+    </a>
+
+    <a data-toggle="tooltip" data-placement="bottom"
+      title="Eliminar" class="btn btn-danger btn-md ml-1" (click)="deleteMarkedNotes() ">
+      <i class="fa fa-trash-o "> Eliminar</i>
+    </a>
+
+    <button type="button " class="btn btn-light " (click)="closeModal()">
+      <i class="fa fa-close "> Cerrar</i>
+    </button>
+  </div>
+
+</ng-template>
  <button type="button" class="btn btn-primary rounded-circle m-4 justify-content-center align-items-center p-0"  data-toggle="modal" data-target="#miModal" style="width: 60px; height: 60px; position: fixed; bottom: 20px; right: 20px;" (click)="seleccioneVisor(contentNote) ">
   <i class="fa fa-plus" style="font-size: 30px; line-height: 60px;"></i>
 </button> 
